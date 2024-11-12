@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1030337410197",
+    "project_id": "halal-recipe",
+    "storage_bucket": "halal-recipe.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030337410197:android:3508143641db162329179c",
+        "android_client_info": {
+          "package_name": "com.example.halalrecipe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1030337410197-1qc3sihsou75vr1de9oh6iale1f99tac.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFVX5jRNFBOopOUEgT3USdE6ZEVdcu6y4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1030337410197-1qc3sihsou75vr1de9oh6iale1f99tac.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

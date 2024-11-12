@@ -1,0 +1,43 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.HalalRecipe">
+
+        <!-- Set SplashActivity as the launcher activity -->
+        <activity
+            android:name=".activity.SplashActivity"
+            android:label="Halal Recipe"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Register LoginActivity -->
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label="Login"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:exported="true" />
+
+        <!-- Register other activities here -->
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:label="Register"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:exported="true" />
+
+        <activity
+            android:name=".activity.HomeActivity"
+            android:label="Home"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:exported="true" />
+
+    </application>
+
+</manifest>
