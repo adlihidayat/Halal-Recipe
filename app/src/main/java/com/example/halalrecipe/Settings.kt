@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import com.example.halalrecipe.activity.LoginActivity
+import com.example.halalrecipe.activity.NotificationsActivity
 import com.google.firebase.auth.FirebaseAuth
 
 private const val ARG_PARAM1 = "param1"
@@ -52,6 +53,18 @@ class Settings : Fragment() {
             activity?.finish() // Close the current fragment
         }
 
+        // Find the LinearLayout for navigating to NotificationsActivity
+        val notificationsLayout: LinearLayout = view.findViewById(R.id.linearLayout_notifications)
+
+        // Set click listener for navigating to NotificationsActivity
+        notificationsLayout.setOnClickListener {
+            // Navigate to NotificationsActivity
+            val intent = Intent(activity, NotificationsActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            activity?.finish() // Close the current fragment
+        }
+
         return view
     }
 
@@ -64,7 +77,6 @@ class Settings : Fragment() {
          * @param param2 Parameter 2.
          * @return A new instance of fragment Settings.
          */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             Settings().apply {
