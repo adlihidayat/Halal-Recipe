@@ -43,7 +43,7 @@ To get started, follow these steps:
 1. Clone the repository to your local machine using the following command:
 
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/adlihidayat/Halal-Recipe.git
    ```
 
 2. Open Android Studio and click on **Open an existing project**.
