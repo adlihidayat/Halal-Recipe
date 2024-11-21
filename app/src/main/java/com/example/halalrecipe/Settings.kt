@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.halalrecipe.activity.LoginActivity
 import com.example.halalrecipe.activity.NotificationsActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -63,6 +64,18 @@ class Settings : Fragment() {
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             activity?.finish() // Close the current fragment
+        }
+
+        // Find the LinearLayout for "Account Information"
+        val accountInformationButton: LinearLayout = view.findViewById(R.id.account_information_button)
+
+        // Set click listener for the "Account Information" button
+        accountInformationButton.setOnClickListener {
+            // Replace the current fragment with FragmentAccountInformation
+            val fragmentTransaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragment_container, FragmentAccountInformation())
+            fragmentTransaction.addToBackStack(null) // Add to back stack so you can go back
+            fragmentTransaction.commit()
         }
 
         return view

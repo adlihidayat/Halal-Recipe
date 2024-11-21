@@ -33,17 +33,10 @@
             android:exported="true" />
 
         <activity
-            android:name=".activity.HomeActivity"
+            android:name=".activity.MainActivity"
             android:label="Home"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="true" />
-
-        <activity
-            android:name=".activity.NotificationsActivity"
-            android:label="Notifications"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:exported="true" />
-
 
         <meta-data
             android:name="preloaded_fonts"

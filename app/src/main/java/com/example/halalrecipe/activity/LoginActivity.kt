@@ -141,7 +141,7 @@ class LoginActivity : AppCompatActivity() {
                             .addOnSuccessListener {
                                 Log.d("LoginActivity", "User data saved successfully")
                                 // Navigate to RegisterActivity upon successful login
-                                val intent = Intent(this, HomeActivity::class.java)
+                                val intent = Intent(this, MainActivity::class.java)
                                 startActivity(intent)
                                 finish() // Optional: close LoginActivity if you don't want to return to it
                             }
@@ -207,7 +207,7 @@ class LoginActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     Log.d("LoginActivity", "GitHub user data saved successfully")
                     // Navigate to next activity or update UI as needed
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -229,7 +229,7 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, "Welcome ${user?.email}", Toast.LENGTH_SHORT).show()
 
                     // Navigate to RegisterActivity or home screen
-                    val intent = Intent(this, HomeActivity::class.java)
+                    val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
