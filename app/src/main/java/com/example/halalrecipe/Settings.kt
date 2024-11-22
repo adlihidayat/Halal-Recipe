@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.example.halalrecipe.activity.HelpActivity
 import com.example.halalrecipe.activity.LoginActivity
 import com.example.halalrecipe.activity.NotificationsActivity
@@ -59,6 +60,18 @@ class Settings : Fragment() {
             val intent = Intent(activity, HelpActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
+        }
+
+        // Find the LinearLayout for "Account Information"
+        val accountInformationButton: LinearLayout = view.findViewById(R.id.account_information_button)
+
+        // Set click listener for the "Account Information" button
+        accountInformationButton.setOnClickListener {
+            // Replace the current fragment with FragmentAccountInformation
+            val fragmentTransaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragment_container, FragmentAccountInformation())
+            fragmentTransaction.addToBackStack(null) // Add to back stack so you can go back
+            fragmentTransaction.commit()
         }
     }
 }

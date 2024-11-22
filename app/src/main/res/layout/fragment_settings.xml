@@ -65,6 +65,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/account_information_button"
                 android:layout_width="364dp"
                 android:layout_height="56dp"
                 android:orientation="horizontal"

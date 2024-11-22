@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Settings"
+    android:gravity="top|start">
+
+    <!-- Main container LinearLayout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"> <!-- Center all children horizontally -->
+
+        <!-- Header Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:background="@color/black"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"> <!-- Center children horizontally -->
+
+            <!-- Home Button -->
+            <LinearLayout
+                android:layout_width="364dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+                <ImageButton
+                    android:id="@+id/homeButton"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@color/white"
+                    android:backgroundTint="@color/black"
+                    android:scaleType="center"
+                    android:src="@drawable/icon_arrowhite" />
+            </LinearLayout>
+
+            <!-- Title Text -->
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="364dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Account Information"
+                android:textColor="@color/white"
+                android:textSize="32sp" />
+        </LinearLayout>
+
+        <!-- Edit Account Section -->
+        <TextView
+            android:layout_width="364dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView4"
+            android:textSize="18dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/inter_semibold"
+            android:layout_marginBottom="28dp"
+            android:text="Edit Account" />
+
+        <!-- User Edit Section -->
+        <LinearLayout
+        android:layout_width="364dp"
+        android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+        android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:orientation="vertical"> <!-- Center all children horizontally -->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/gray"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Email Address" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/gray"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="naasrulfvnkyrimek@gmail.com" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gray" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:orientation="vertical"> <!-- Center all children horizontally -->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/gray"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Fullname" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="naasrulfvnkyrimek" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gray" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"> <!-- Center all children horizontally -->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/gray"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Profile picture URL" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="22dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="https://avatars.githubusercontent.com/u/50768974?v=4" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gray" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="364sp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/inter_bold"
+                android:text="Delete Account" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/darkGray"
+                android:fontFamily="@font/inter_medium"
+                android:text="Your account will be permanently removed from the application and your data will be lost" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/login_button"
+            android:layout_width="364dp"
+            android:layout_height="44dp"
+            android:layout_marginBottom="36dp"
+            android:background="@drawable/rounded_button_delete_red"
+            android:fontFamily="@font/inter_semibold"
+            android:letterSpacing=".02"
+            android:text="Delete Account"
+            android:textAllCaps="false"
+            android:textColor="@color/red"
+            android:gravity="center"
+            android:textSize="14sp" />
+    </LinearLayout>
+</FrameLayout>
