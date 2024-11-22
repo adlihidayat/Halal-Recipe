@@ -35,6 +35,7 @@
     <string name="register_github_button">Sign up With Github</string>
     <string name="register_to_login">Already have an account?</string>
     <string name="register_login_button">Login</string>
+    <string name="help_terms">Terms and Privacy Policy</string>
 
     <!--    firebase-->
     <string name="default_web_client_id">1030337410197-1qc3sihsou75vr1de9oh6iale1f99tac.apps.googleusercontent.com</string>

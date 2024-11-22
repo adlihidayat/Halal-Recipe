@@ -44,6 +44,12 @@
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="true" />
 
+        <activity
+            android:name=".activity.HelpActivity"
+            android:label="Help"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:exported="true" />
+
 
         <meta-data
             android:name="preloaded_fonts"

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <LinearLayout
+            android:layout_width="420dp"
+            android:layout_height="180dp"
+            android:layout_weight="0"
+            android:background="@color/black"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/tombolback"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/icon_arrowhite" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="203dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_weight="0"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Help"
+                android:textColor="@color/white"
+                android:textSize="32dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="364dp"
+            android:layout_height="226dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="60dp"
+            android:layout_weight="0"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="363dp"
+                android:layout_height="74dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView14"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="23dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/icon_help" />
+
+                <LinearLayout
+                    android:layout_width="118dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="0"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="93dp"
+                        android:layout_height="19dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Help Center"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="118dp"
+                        android:layout_height="15dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="Get help, contact us"
+                        android:textColor="@android:color/darker_gray"
+                        android:textSize="12dp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/imageView15"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="185dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="0"
+                    app:srcCompat="@drawable/icon_arrowright" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="364dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="230dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="0"
+                        android:src="@drawable/icon_policy" />
+
+                    <TextView
+                        android:id="@+id/help_terms"
+                        android:layout_width="191dp"
+                        android:layout_height="19dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="0"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="@string/help_terms"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/imageView10"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="108dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/icon_arrowright" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
+
+            <LinearLayout
+                android:layout_width="364dp"
+                android:layout_height="56dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight="0"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="190dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="0"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_weight="0"
+                        android:src="@drawable/icon_appinfo" />
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="73dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="0"
+                        android:fontFamily="@font/inter_medium"
+                        android:text="App Info"
+                        android:textColor="@color/black"
+                        android:textSize="16dp" />
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="147dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/icon_arrowright" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <View
+            android:id="@+id/view3"
+            android:layout_width="363dp"
+            android:layout_marginStart="20dp"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
