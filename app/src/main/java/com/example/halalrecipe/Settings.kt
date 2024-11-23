@@ -66,17 +66,19 @@ class Settings : Fragment() {
             activity?.finish() // Close the current fragment
         }
 
-        // Find the LinearLayout for "Account Information"
         val accountInformationButton: LinearLayout = view.findViewById(R.id.account_information_button)
-
-        // Set click listener for the "Account Information" button
         accountInformationButton.setOnClickListener {
-            // Replace the current fragment with FragmentAccountInformation
-            val fragmentTransaction: FragmentTransaction = parentFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragment_container, FragmentAccountInformation())
-            fragmentTransaction.addToBackStack(null) // Add to back stack so you can go back
-            fragmentTransaction.commit()
+            try {
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, FragmentAccountInformation())
+                    .addToBackStack(null)
+                    .commit()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
+
+
 
         return view
     }
