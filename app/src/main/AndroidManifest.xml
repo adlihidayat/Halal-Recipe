@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -33,7 +34,7 @@
             android:exported="true" />
 
         <activity
-            android:name=".activity.HomeActivity"
+            android:name=".activity.MainActivity"
             android:label="Home"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="true" />
@@ -46,6 +47,12 @@
 
         <activity
             android:name=".activity.HelpActivity"
+            android:label="Help"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:exported="true" />
+
+        <activity
+            android:name=".activity.AppinfoActivity"
             android:label="Help"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="true" />
