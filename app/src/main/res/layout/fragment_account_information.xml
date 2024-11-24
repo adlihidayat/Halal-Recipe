@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp">
                 <ImageButton
-                    android:id="@+id/tombolback"
+                    android:id="@+id/homeButton"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:background="@color/white"

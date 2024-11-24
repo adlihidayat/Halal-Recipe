@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="210dp"
         app:cardCornerRadius="20dp"
         android:background="@color/black"
         app:layout_constraintTop_toTopOf="parent"
@@ -18,67 +18,62 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
-            android:layout_width="290dp"
-            android:layout_height="230dp"
+            android:layout_width="265dp"
+            android:layout_height="210dp"
             android:background="@color/black"
+            android:gravity="center"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Log out of you"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/inter_bold"
-                android:text="CONFIRM LOGOUT"
+                android:fontFamily="@font/inter_semibold"
+                android:text="account ?"
                 android:textColor="@color/white"
-                android:textSize="25sp" />
-
-            <TextView
-                android:id="@+id/tvMessage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/inter_medium"
-                android:text="Are you want to logout?"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@android:color/darker_gray" />
 
             <Button
                 android:id="@+id/btnlogout"
-                android:layout_width="266dp"
-                android:layout_height="44dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="14dp"
-                android:background="@drawable/rounded_button_white"
-                android:backgroundTint="@color/red"
+                android:layout_width="260dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/black"
                 android:fontFamily="@font/inter_semibold"
-                android:padding="10dp"
-                android:text="Log Out"
+                android:text="Log out"
                 android:textColor="@color/red"
-                android:textSize="16sp"
-                app:strokeColor="@color/white"
-                app:strokeWidth="2dp" />
+                android:textSize="16sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray" />
 
             <Button
                 android:id="@+id/btncancel"
-                android:layout_width="266dp"
-                android:layout_height="44dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="14dp"
-                android:background="@drawable/rounded_button_white"
+                android:layout_width="260dp"
+                android:layout_height="50dp"
                 android:fontFamily="@font/inter_semibold"
-                android:padding="10dp"
+                android:backgroundTint="@color/black"
                 android:text="Cancel"
                 android:textColor="@color/white"
-                android:textSize="16sp"
-                app:strokeColor="@color/black"
-                app:strokeWidth="2dp" />
+                android:textSize="16sp"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

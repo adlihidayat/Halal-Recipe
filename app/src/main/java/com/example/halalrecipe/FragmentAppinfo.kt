@@ -1,14 +1,14 @@
 package com.example.halalrecipe
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import androidx.fragment.app.Fragment
+import android.widget.Button
 import com.google.firebase.auth.FirebaseAuth
 
-class FragmentAccountInformation : Fragment() {
+class FragmentAppinfo : Fragment() {
 
     private lateinit var auth: FirebaseAuth
 
@@ -16,6 +16,7 @@ class FragmentAccountInformation : Fragment() {
         super.onCreate(savedInstanceState)
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
+
     }
 
     override fun onCreateView(
@@ -23,19 +24,13 @@ class FragmentAccountInformation : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_account_information, container, false)
+        val view = inflater.inflate(R.layout.fragment_appinfo, container, false)
 
-        // Find the back button and set its click listener
-        val homeButton = view.findViewById<ImageButton>(R.id.homeButton)
-        homeButton?.setOnClickListener {
+        val tombolback: Button = view.findViewById(R.id.tombolback)
+
+        tombolback.setOnClickListener {
             parentFragmentManager.popBackStack() // Navigate back to the previous fragment
         }
-
         return view
     }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = FragmentAccountInformation()
     }
-}

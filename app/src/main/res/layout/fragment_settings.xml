@@ -117,6 +117,7 @@
                 android:background="@android:color/darker_gray" />
 
             <LinearLayout
+                android:id="@+id/tombolfavorite"
                 android:layout_width="364dp"
                 android:layout_height="56dp"
                 android:layout_marginTop="18dp"
