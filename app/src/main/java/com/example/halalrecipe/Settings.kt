@@ -1,6 +1,5 @@
 package com.example.halalrecipe
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +8,6 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import com.example.halalrecipe.activity.HelpActivity
-import com.example.halalrecipe.activity.LoginActivity
-import com.example.halalrecipe.activity.NotificationsActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class Settings : Fragment() {
@@ -43,23 +39,34 @@ class Settings : Fragment() {
             showPopUp.setCancelable(false)
         }
 
-        // Find the LinearLayout for navigating to NotificationsActivity
-        val notificationsLayout: LinearLayout = view.findViewById(R.id.linearLayout_notifications)
-        notificationsLayout.setOnClickListener {
-            // Navigate to NotificationsActivity
-            val intent = Intent(activity, NotificationsActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
-            activity?.finish() // Close the current fragment
+        // Find the LinearLayout for navigating to NotificationsFragment
+        val favoriteLayout: LinearLayout = view.findViewById(R.id.tombolfavorite)
+        favoriteLayout.setOnClickListener {
+            // Replace the current fragment with NotificationsFragment
+            val fragmentTransaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragment_container, Saved())
+            fragmentTransaction.addToBackStack(null) // Add to back stack so you can go back
+            fragmentTransaction.commit() // Close the current fragment
         }
 
-        // Find the LinearLayout for navigating to HelpActivity
+        // Find the LinearLayout for navigating to NotificationsFragment
+        val notificationsLayout: LinearLayout = view.findViewById(R.id.linearLayout_notifications)
+        notificationsLayout.setOnClickListener {
+            // Replace the current fragment with NotificationsFragment
+            val fragmentTransaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragment_container, FragmentNotifications())
+            fragmentTransaction.addToBackStack(null) // Add to back stack so you can go back
+            fragmentTransaction.commit() // Close the current fragment
+        }
+
+        // Find the LinearLayout for navigating to HelpFragment
         val helpLayout: LinearLayout = view.findViewById(R.id.linearLayout_help)
         helpLayout.setOnClickListener {
             // Intent to switch to HelpActivity
-            val intent = Intent(activity, HelpActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
+            val fragmentTransaction: FragmentTransaction = parentFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragment_container, FragmentHelp())
+            fragmentTransaction.addToBackStack(null) // Add to back stack so you can go back
+            fragmentTransaction.commit() // Close the current fragment
         }
 
         // Find the LinearLayout for "Account Information"

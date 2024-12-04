@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">HalalRecipe</string>
+    <string name="app_title">Resipi Halal</string>
+
+    <string name="login_img_description">logo img</string>
+    <string name="login_title">Selamat Datang Kembali!</string>
+    <string name="login_description">Masukkan detail anda untuk login</string>
+    <string name="login_email_label">Email</string>
+    <string name="login_email_hint">hello@gmail.com</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_password_hint">********</string>
+    <string name="login_rememberme_label">Remember me</string>
+    <string name="login_login_button">Login</string>
+    <string name="login_or">OR</string>
+    <string name="login_google_button">Sign in with Google</string>
+    <string name="login_github_button">Sign in With Github</string>
+    <string name="login_to_register">Don\'t have an account?</string>
+    <string name="login_register_button">Register</string>
+
+
+    <string name="register_img_description">logo img</string>
+    <string name="register_title">Daftar Akun Anda</string>
+    <string name="register_description">Masukkan detail anda untuk membuat akun</string>
+    <string name="register_fullname_label">Full Name</string>
+    <string name="register_fullname_hint">Enter your name</string>
+    <string name="register_email_label">Email</string>
+    <string name="register_email_hint">hello@gmail.com</string>
+    <string name="register_password_label">Password</string>
+    <string name="register_password_hint">********</string>
+    <string name="register_reenter_password_label">Re-Enter Password</string>
+    <string name="register_reenter_password_hint">********</string>
+    <string name="register_signup_button">Sign Up</string>
+    <string name="register_or">OR</string>
+    <string name="register_google_button">Sign up with Google</string>
+    <string name="register_github_button">Sign up With Github</string>
+    <string name="register_to_login">Already have an account?</string>
+    <string name="register_login_button">Login</string>
+    <string name="help_terms">Terms and Privacy Policy</string>
+
+    <!--    firebase-->
+    <string name="default_web_client_id">1030337410197-1qc3sihsou75vr1de9oh6iale1f99tac.apps.googleusercontent.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

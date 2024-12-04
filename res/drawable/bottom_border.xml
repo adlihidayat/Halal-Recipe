@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Area kosong untuk latar belakang (transparan) -->
+    <item>
+        <shape android:shape="line">
+            <solid android:color="@android:color/transparent" /> <!-- Transparan -->
+        </shape>
+    </item>
+    <!-- Garis bawah -->
+    <item android:bottom="1dp"> <!-- Hanya garis di bagian bawah -->
+        <shape
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:shape="line">
+            <solid android:color="#B0B0B0" /> <!-- Warna abu-abu -->
+        </shape>
+    </item>
+</layer-list>
