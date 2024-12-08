@@ -26,6 +26,14 @@
         <item name="android:maxHeight">10dp</item>
     </style>
 
+    <style name="CornerImage">
+        <item name="cornerSize">15%</item>
+    </style>
+
+    <style name="lingkaran">
+        <item name="cornerSize">50%</item>
+    </style>
+
 
 
 

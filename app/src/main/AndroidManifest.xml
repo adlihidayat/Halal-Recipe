@@ -47,7 +47,7 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="Home"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="true" />
 
         <meta-data
