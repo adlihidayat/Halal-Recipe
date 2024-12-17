@@ -32,7 +32,6 @@ class Detail : Fragment() {
 
         // Ambil data yang dikirim melalui arguments
         foodId = arguments?.getString("id") ?: "" // Simpan ke properti kelas
-        Log.d("DetailFragment", "Received foodId: $foodId")
         val title = arguments?.getString("title")
         val author = arguments?.getString("author")
         val imageFood = arguments?.getString("imageFood")

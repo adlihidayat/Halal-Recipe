@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/all"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginRight="8dp"
@@ -62,7 +62,7 @@
             android:textSize="14sp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/star5"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginRight="8dp"
@@ -74,7 +74,7 @@
             android:textColor="#000000" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/star4"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginRight="8dp"
@@ -86,7 +86,7 @@
             android:textColor="#000000" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/star3"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginRight="8dp"
@@ -98,7 +98,7 @@
             android:textColor="#000000" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/star2"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_marginRight="8dp"
@@ -110,7 +110,7 @@
             android:textColor="#000000" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/star1"
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_weight="1"

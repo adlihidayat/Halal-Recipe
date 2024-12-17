@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,7 +28,6 @@ class ReviewsFragment : Fragment() {
 
         // Ambil data yang dikirim melalui arguments
         foodId = arguments?.getString("id") ?: "" // Simpan ke properti kelas
-        Log.d("DetailFragment", "Received foodId: $foodId")
 
         // Setup RecyclerView untuk Review
         recyclerView = view.findViewById(R.id.listReviews)
@@ -47,6 +47,9 @@ class ReviewsFragment : Fragment() {
             parentFragmentManager.popBackStack()
         }
 
+        // Setup Button Filter untuk setiap bintang
+        setupStarButtons(view)
+
         return view
     }
 
@@ -59,10 +62,79 @@ class ReviewsFragment : Fragment() {
             .addOnSuccessListener { result ->
                 val newReviewList = result.map { document ->
                     document.toObject(ReviewData::class.java)
-                }
+                }.take(3)
                 reviewList.apply {
                     clear()
                     addAll(newReviewList)
+                }
+                reviewAdapter.notifyDataSetChanged() // Update RecyclerView
+            }
+            .addOnFailureListener { exception ->
+                Log.e("Firestore", "Error fetching reviews: ", exception)
+            }
+    }
+
+    private fun setupStarButtons(view: View) {
+        val allButton = view.findViewById<Button>(R.id.all)
+        val star5Button = view.findViewById<Button>(R.id.star5)
+        val star4Button = view.findViewById<Button>(R.id.star4)
+        val star3Button = view.findViewById<Button>(R.id.star3)
+        val star2Button = view.findViewById<Button>(R.id.star2)
+        val star1Button = view.findViewById<Button>(R.id.star1)
+
+        // All Button
+        allButton.setOnClickListener {
+            fetchData() // Menampilkan semua ulasan
+        }
+
+        // Filter berdasarkan rating bintang 5
+        star5Button.setOnClickListener {
+            fetchDataFilter(rating = 5f)
+        }
+
+        // Filter berdasarkan rating bintang 4
+        star4Button.setOnClickListener {
+            fetchDataFilter(rating = 4f)
+        }
+
+        // Filter berdasarkan rating bintang 3
+        star3Button.setOnClickListener {
+            fetchDataFilter(rating = 3f)
+        }
+
+        // Filter berdasarkan rating bintang 2
+        star2Button.setOnClickListener {
+            fetchDataFilter(rating = 2f)
+        }
+
+        // Filter berdasarkan rating bintang 1
+        star1Button.setOnClickListener {
+            fetchDataFilter(rating = 1f)
+        }
+    }
+
+    private fun fetchDataFilter(rating: Float) {
+        // Mengambil data review dari Firestore
+        FirebaseFirestore.getInstance()
+            .collection("foods")
+            .document(foodId)
+            .collection("reviews")
+            .get()
+            .addOnSuccessListener { result ->
+                val newReviewList = result.map { document ->
+                    document.toObject(ReviewData::class.java)
+                }
+
+                // Jika rating dipilih, filter ulasan berdasarkan rating
+                val filteredReviews = if (rating != null) {
+                    newReviewList.filter { it.rating == rating }
+                } else {
+                    newReviewList
+                }
+
+                reviewList.apply {
+                    clear()
+                    addAll(filteredReviews)
                 }
                 reviewAdapter.notifyDataSetChanged() // Update RecyclerView
             }
