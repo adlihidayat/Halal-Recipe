@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:descendantFocusability="blocksDescendants">
 
     <ImageView
-        android:id="@+id/fotoMakanan"
+        android:id="@+id/imageFood"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:scaleType="centerCrop"
@@ -15,160 +17,175 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:src="@drawable/baseline_arrow_back_24"
+            android:contentDescription="Back Button"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <!-- TextView di Tengah -->
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingEnd="24dp"
+            android:text="Recipe Detail"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageFood"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="100dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="16dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:layout_marginBottom="320dp">
-
-                <!-- Button Kiri -->
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableEnd="@drawable/baseline_arrow_back_24" />
-
-                <!-- TextView di Tengah -->
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:paddingEnd="24dp"
-                    android:text="Recipe Detail"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="20dp"
-                android:paddingHorizontal="16dp"
-                android:paddingVertical="16dp"
-                android:background="@drawable/rounded_background">
+                    android:orientation="horizontal"
+                    android:layout_marginTop="350dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="16dp"
+                    android:background="@drawable/rounded_background">
 
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="10dp"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/namaMakanan"
-                        android:layout_width="match_parent"
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingBottom="10dp"
                         android:text="TextView"
+                        android:textColor="@color/black"
                         android:textStyle="bold"/>
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
 
                         <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/imageView10"
-                            android:layout_width="22dp"
-                            android:layout_height="22dp"
+                            android:id="@+id/imageAuthor"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
                             android:layout_marginEnd="5dp"
-                            android:scaleType="centerCrop"
-                            tools:srcCompat="@tools:sample/avatars"
+                            android:src="@drawable/pfp"
                             app:shapeAppearanceOverlay="@style/lingkaran"/>
 
                         <TextView
-                            android:id="@+id/textView15"
-                            android:layout_width="0dp"
+                            android:id="@+id/author"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:textColor="@color/black"
                             android:text="TextView" />
                     </LinearLayout>
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/textView12"
+                <ImageView
+                    android:id="@+id/bookmarkButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:drawableEnd="@drawable/baseline_bookmark_border_24" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/baseline_bookmark_border_24" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="30dp"
                 android:background="@drawable/rounded_background">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingHorizontal="10dp"
-                    android:paddingVertical="10dp">
+                    android:padding="15dp">
 
                     <TextView
                         android:id="@+id/textView18"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:paddingRight="5dp"
                         android:drawableEnd="@drawable/baseline_rice_bowl_24" />
 
                     <TextView
                         android:id="@+id/textView19"
                         android:layout_width="0dp"
+                        android:textColor="@color/black"
+                        android:paddingHorizontal="5dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:textStyle="bold"
                         android:text="Ingredient" />
                 </LinearLayout>
 
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
+                    android:layout_height="1dp"
                     android:background="@color/gray"
                     android:layout_weight="1"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:paddingHorizontal="10dp"
                     android:paddingVertical="10dp">
 
                     <TextView
                         android:id="@+id/textView16"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
+                        android:textColor="@color/black"
                         android:text="Bahan" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/bahanMasak"
+                    <TextView
+                        android:id="@+id/ingredients"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:paddingHorizontal="10dp"/>
+                        android:textColor="@color/black"
+                        android:text="bahan-bahan"
+                        android:layout_height="wrap_content"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -180,48 +197,49 @@
 
                     <TextView
                         android:id="@+id/textView17"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:text="Cara masak" />
+                        android:text="Cara masak"
+                        android:textColor="@color/black"/>
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/caraMasak"
+                    <TextView
+                        android:id="@+id/tutorial"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginHorizontal="10dp"/>
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"/>
                 </LinearLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/imageView"
+                        android:id="@+id/profile"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        tools:srcCompat="@tools:sample/avatars"
+                        android:src="@drawable/pfp"
                         app:shapeAppearanceOverlay="@style/lingkaran"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:paddingHorizontal="5dp">
+                        android:paddingHorizontal="15dp">
 
                         <TextView
-                            android:id="@+id/username"
+                            android:id="@+id/name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="20dp"
@@ -232,6 +250,7 @@
                             android:id="@+id/textView13"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/gray"
                             android:text="Reviw are public." />
                     </LinearLayout>
 
@@ -270,31 +289,30 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginHorizontal="30dp"
                 android:layout_marginVertical="10dp">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/showRating"
+                    tools:listitem="@layout/reviews_card"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="220dp" />
 
-                <Button
+                <TextView
                     android:id="@+id/button2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
                     android:background="@null"
                     android:textColor="@color/green"
-                    android:text="See all reviews" />
-
+                    android:text="See all reviews"
+                    android:layout_marginBottom="40dp"/>
 
             </LinearLayout>
 
-
         </LinearLayout>
-
 
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
