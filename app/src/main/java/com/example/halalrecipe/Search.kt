@@ -189,6 +189,8 @@ class Search : Fragment() {
             putString("author", menuData.author)
             putString("imageFood", menuData.imageFood)
             putStringArrayList("ingredients", ArrayList(menuData.ingredients ?: emptyList()))
+            putStringArrayList("tutorial", ArrayList(menuData.tutorial ?: emptyList()))
+
         }
         detailFragment.arguments = bundle
 
