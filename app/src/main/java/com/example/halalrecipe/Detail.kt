@@ -45,16 +45,17 @@ class Detail : Fragment() {
         val author = arguments?.getString("author")
         val imageFood = arguments?.getString("imageFood")
         val ingredients = arguments?.getStringArrayList("ingredients")
-
-
-
+        val tutorial = arguments?.getStringArrayList("tutorial")
 
         // Siapkan data untuk dikirim
 
         // Tampilkan data ke dalam view
         view.findViewById<TextView>(R.id.title).text = title
         view.findViewById<TextView>(R.id.author).text = author
-        view.findViewById<TextView>(R.id.ingredients).text = ingredients?.joinToString(", ")
+        view.findViewById<TextView>(R.id.ingredients).text =
+            ingredients?.mapIndexed { index, item -> "${index + 1}. $item" }?.joinToString("\n") ?: ""
+        view.findViewById<TextView>(R.id.tutorial).text =
+            tutorial?.mapIndexed { index, item -> "${index + 1}. $item" }?.joinToString("\n") ?: ""
 
         // Setup RecyclerView untuk Review
         recyclerView = view.findViewById(R.id.listReviews)
