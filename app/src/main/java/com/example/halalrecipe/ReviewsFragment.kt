@@ -62,7 +62,7 @@ class ReviewsFragment : Fragment() {
             .addOnSuccessListener { result ->
                 val newReviewList = result.map { document ->
                     document.toObject(ReviewData::class.java)
-                }.take(3)
+                }
                 reviewList.apply {
                     clear()
                     addAll(newReviewList)
