@@ -101,6 +101,7 @@ class Category : Fragment() {
 
         // Kirim data melalui Bundle
         val bundle = Bundle()
+        bundle.putString("id", menuData.id)
         bundle.putString("title", menuData.title)
         bundle.putString("author", menuData.author)
         bundle.putString("imageFood", menuData.imageFood)

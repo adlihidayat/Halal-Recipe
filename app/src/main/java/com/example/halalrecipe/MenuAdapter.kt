@@ -45,7 +45,7 @@ class MenuAdapter(
             .addOnSuccessListener { result ->
                 val fetchedList = mutableListOf<MenuData>()
                 for (document in result) {
-                    val menu = document.toObject(MenuData::class.java)
+                    val menu = document.toObject(MenuData::class.java).copy(id = document.id)
                     fetchedList.add(menu)
                 }
                 updateData(fetchedList) // Update data with the fetched results

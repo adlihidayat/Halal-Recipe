@@ -105,7 +105,7 @@ class Search : Fragment() {
             .addOnSuccessListener { result ->
                 val appetizerList = mutableListOf<MenuData>()
                 for (document in result) {
-                    val menu = document.toObject(MenuData::class.java)
+                    val menu = document.toObject(MenuData::class.java).copy(id = document.id)
                     appetizerList.add(menu)
                 }
                 appetizerAdapter.updateData(appetizerList) // Perbarui adapter dengan data Appetizer
@@ -123,7 +123,7 @@ class Search : Fragment() {
             .addOnSuccessListener { result ->
                 val beverageList = mutableListOf<MenuData>()
                 for (document in result) {
-                    val menu = document.toObject(MenuData::class.java)
+                    val menu = document.toObject(MenuData::class.java).copy(id = document.id)
                     beverageList.add(menu)
                 }
                 beverageAdapter.updateData(beverageList) // Perbarui adapter dengan data Beverages
@@ -141,7 +141,7 @@ class Search : Fragment() {
             .addOnSuccessListener { result ->
                 val dessertList = mutableListOf<MenuData>()
                 for (document in result) {
-                    val menu = document.toObject(MenuData::class.java)
+                    val menu = document.toObject(MenuData::class.java).copy(id = document.id)
                     dessertList.add(menu)
                 }
                 dessertAdapter.updateData(dessertList) // Perbarui adapter dengan data Beverages
@@ -159,7 +159,7 @@ class Search : Fragment() {
             .addOnSuccessListener { result ->
                 val mainCourseList = mutableListOf<MenuData>()
                 for (document in result) {
-                    val menu = document.toObject(MenuData::class.java)
+                    val menu = document.toObject(MenuData::class.java).copy(id = document.id)
                     mainCourseList.add(menu)
                 }
                 mainCourseAdapter.updateData(mainCourseList) // Perbarui adapter dengan data Beverages
@@ -185,6 +185,7 @@ class Search : Fragment() {
     private fun navigateToDetail(menuData: MenuData) {
         val detailFragment = Detail()
         val bundle = Bundle().apply {
+            putString("id", menuData.id)
             putString("title", menuData.title)
             putString("author", menuData.author)
             putString("imageFood", menuData.imageFood)

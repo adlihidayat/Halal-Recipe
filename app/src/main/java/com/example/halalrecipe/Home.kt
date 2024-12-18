@@ -108,7 +108,7 @@ class Home : Fragment() {
             .addOnSuccessListener { result ->
                 val allMenuList = mutableListOf<MenuData>()
                 for (document in result) {
-                    val menu = document.toObject(MenuData::class.java)
+                    val menu = document.toObject(MenuData::class.java).copy(id = document.id)
                     allMenuList.add(menu)
                 }
                 allMenuAdapter.updateData(allMenuList) // Perbarui data adapter
@@ -127,7 +127,7 @@ class Home : Fragment() {
             .addOnSuccessListener { result ->
                 val appetizerList = mutableListOf<MenuData>()
                 for (document in result) {
-                    val menu = document.toObject(MenuData::class.java)
+                    val menu = document.toObject(MenuData::class.java).copy(id = document.id)
                     appetizerList.add(menu)
                 }
                 appetizerAdapter.updateData(appetizerList) // Perbarui data adapter
@@ -142,6 +142,7 @@ class Home : Fragment() {
 
         // Kirim data melalui arguments
         val bundle = Bundle()
+        bundle.putString("id", menuData.id)
         bundle.putString("title", menuData.title)
         bundle.putString("author", menuData.author)
         bundle.putString("imageFood", menuData.imageFood)
