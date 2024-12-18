@@ -49,6 +49,20 @@ class Home : Fragment() {
         // Ambil data pengguna untuk nama dan foto profil
         fetchUserData()
 
+        // Di dalam onCreateView, setelah inisialisasi view
+        val seeAllRec = view.findViewById<TextView>(R.id.seeallrec)
+        val seeAllApp = view.findViewById<TextView>(R.id.seeallapp)
+
+// Listener untuk tombol "See all" di semua menu
+        seeAllRec.setOnClickListener {
+            navigateToSearchFragment()
+        }
+
+// Listener untuk tombol "See all" di appetizer
+        seeAllApp.setOnClickListener {
+            navigateToCategoryFragment("Appetizer")  // Filter kategori "Appetizer"
+        }
+
         return view
     }
 
@@ -172,21 +186,16 @@ class Home : Fragment() {
                         // Update nama pengguna
                         nameText.text = name ?: "User"  // Set default text if name is null
 
-                        // Jika field "profile" berisi URL gambar dari Firebase Storage
+                        // Cek apakah field "profile" berisi URL langsung
                         if (profileUrl.isNullOrEmpty()) {
                             profileImage.setImageResource(R.drawable.pfp)  // Set default image if no profile URL
                         } else {
-                            // Mengambil gambar profil dari Firebase Storage menggunakan URL
-                            val storageReference = FirebaseStorage.getInstance().reference.child(profileUrl)
-                            storageReference.downloadUrl.addOnSuccessListener { uri ->
-                                // Setelah URL gambar diambil, tampilkan dengan Glide
-                                Glide.with(requireContext())
-                                    .load(uri)
-                                    .into(profileImage)
-                            }
-                                .addOnFailureListener { exception ->
-                                    Log.e("StorageError", "Error loading profile image", exception)
-                                }
+                            // Jika URL langsung ke gambar, load menggunakan Glide
+                            Glide.with(requireContext())
+                                .load(profileUrl)
+                                .placeholder(R.drawable.pfp)  // Placeholder selama gambar dimuat
+                                .error(R.drawable.pfp)  // Gambar default jika terjadi error
+                                .into(profileImage)
                         }
                     }
                 }
@@ -194,6 +203,16 @@ class Home : Fragment() {
                     Log.e("FirestoreError", "Error getting user data", exception)
                 }
         }
+    }
+
+    private fun navigateToSearchFragment() {
+        val searchFragment = Search()
+
+        // Ganti fragment ke halaman Search
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, searchFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun showError(message: String) {
