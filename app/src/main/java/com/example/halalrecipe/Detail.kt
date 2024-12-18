@@ -159,7 +159,7 @@ class Detail : Fragment() {
             .addOnSuccessListener { result ->
                 val newReviewList = result.map { document ->
                     document.toObject(ReviewData::class.java).copy(id = document.id)
-                }
+                }.take(3)
                 reviewList.apply {
                     clear()
                     addAll(newReviewList)
