@@ -84,9 +84,6 @@ class LoginActivity : AppCompatActivity() {
             signInWithGithub()
         }
 
-
-
-
         // Checkbox listener
         val checkBox = findViewById<CheckBox>(R.id.my_checkbox)
         checkBox.setOnCheckedChangeListener { _, isChecked ->

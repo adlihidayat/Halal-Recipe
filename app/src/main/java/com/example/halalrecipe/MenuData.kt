@@ -6,6 +6,7 @@ data class MenuData(
     val id: String? = null,
     val author: String? = null,
     val category: String? = null,
+    val tutorial: List<String>? = null,
     val createdAt: Timestamp? = null,
     val imageAuthor: String? = null,
     val imageFood: String? = null,

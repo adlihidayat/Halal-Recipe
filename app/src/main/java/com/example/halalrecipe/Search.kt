@@ -1,59 +1,200 @@
 package com.example.halalrecipe
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Search.newInstance] factory method to
- * create an instance of this fragment.
- */
 class Search : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var recyclerViewAppetizer: RecyclerView
+    private lateinit var recyclerViewBeverages: RecyclerView
+    private lateinit var recyclerViewDessert: RecyclerView
+    private lateinit var recyclerViewMainCourse: RecyclerView
+
+    private lateinit var appetizerAdapter: MenuAdapter
+    private lateinit var beverageAdapter: MenuAdapter
+    private lateinit var dessertAdapter: MenuAdapter
+    private lateinit var mainCourseAdapter: MenuAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        val view = inflater.inflate(R.layout.fragment_search, container, false)
+
+        // Inisialisasi RecyclerView
+        recyclerViewAppetizer = view.findViewById(R.id.viewrecapp)
+        recyclerViewBeverages = view.findViewById(R.id.viewrecbev)
+        recyclerViewDessert = view.findViewById(R.id.viewrecdessert)
+        recyclerViewMainCourse = view.findViewById(R.id.viewrecmain)
+
+        // Setup RecyclerView
+        setupRecyclerViews()
+
+        // Load data kategori Appetizer dan Beverages
+        fetchAppetizerData()
+        fetchBeverageData()
+        fetchDessertData()
+        fetchMainCourseData()
+
+        // Setup klik untuk navigasi ke kategori
+        view.findViewById<View>(R.id.appetizer).setOnClickListener {
+            navigateToCategoryFragment("Appetizer")
+        }
+
+        view.findViewById<View>(R.id.beverages).setOnClickListener {
+            navigateToCategoryFragment("Beverages")
+        }
+
+        view.findViewById<View>(R.id.dessert).setOnClickListener {
+            navigateToCategoryFragment("Dessert")
+        }
+
+        view.findViewById<View>(R.id.mainCourse).setOnClickListener {
+            navigateToCategoryFragment("Main Course")
+        }
+
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Search.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Search().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun setupRecyclerViews() {
+        // RecyclerView untuk Appetizer
+        recyclerViewAppetizer.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        appetizerAdapter = MenuAdapter(onItemClick = { menuData ->
+            navigateToDetail(menuData)
+        })
+        recyclerViewAppetizer.adapter = appetizerAdapter
+
+        // RecyclerView untuk Beverages
+        recyclerViewBeverages.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        beverageAdapter = MenuAdapter(onItemClick = { menuData ->
+            navigateToDetail(menuData)
+        })
+        recyclerViewBeverages.adapter = beverageAdapter
+
+        // RecyclerView untuk Dessert
+        recyclerViewDessert.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        dessertAdapter = MenuAdapter(onItemClick = { menuData ->
+            navigateToDetail(menuData)
+        })
+        recyclerViewDessert.adapter = dessertAdapter
+
+        // RecyclerView untuk Beverages
+        recyclerViewMainCourse.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        mainCourseAdapter = MenuAdapter(onItemClick = { menuData ->
+            navigateToDetail(menuData)
+        })
+        recyclerViewMainCourse.adapter = mainCourseAdapter
+    }
+
+    private fun fetchAppetizerData() {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("foods")
+            .whereEqualTo("category", "Appetizer") // Ambil data berdasarkan kategori "Appetizer"
+            .get()
+            .addOnSuccessListener { result ->
+                val appetizerList = mutableListOf<MenuData>()
+                for (document in result) {
+                    val menu = document.toObject(MenuData::class.java)
+                    appetizerList.add(menu)
                 }
+                appetizerAdapter.updateData(appetizerList) // Perbarui adapter dengan data Appetizer
             }
+            .addOnFailureListener { exception ->
+                Log.e("FirestoreError", "Gagal mengambil menu appetizer", exception)
+            }
+    }
+
+    private fun fetchBeverageData() {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("foods")
+            .whereEqualTo("category", "Beverages") // Ambil data berdasarkan kategori "Beverages"
+            .get()
+            .addOnSuccessListener { result ->
+                val beverageList = mutableListOf<MenuData>()
+                for (document in result) {
+                    val menu = document.toObject(MenuData::class.java)
+                    beverageList.add(menu)
+                }
+                beverageAdapter.updateData(beverageList) // Perbarui adapter dengan data Beverages
+            }
+            .addOnFailureListener { exception ->
+                Log.e("FirestoreError", "Gagal mengambil menu beverages", exception)
+            }
+    }
+
+    private fun fetchDessertData() {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("foods")
+            .whereEqualTo("category", "Dessert") // Ambil data berdasarkan kategori "Beverages"
+            .get()
+            .addOnSuccessListener { result ->
+                val dessertList = mutableListOf<MenuData>()
+                for (document in result) {
+                    val menu = document.toObject(MenuData::class.java)
+                    dessertList.add(menu)
+                }
+                dessertAdapter.updateData(dessertList) // Perbarui adapter dengan data Beverages
+            }
+            .addOnFailureListener { exception ->
+                Log.e("FirestoreError", "Gagal mengambil menu dessert", exception)
+            }
+    }
+
+    private fun fetchMainCourseData() {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("foods")
+            .whereEqualTo("category", "Main Course") // Ambil data berdasarkan kategori "Beverages"
+            .get()
+            .addOnSuccessListener { result ->
+                val mainCourseList = mutableListOf<MenuData>()
+                for (document in result) {
+                    val menu = document.toObject(MenuData::class.java)
+                    mainCourseList.add(menu)
+                }
+                mainCourseAdapter.updateData(mainCourseList) // Perbarui adapter dengan data Beverages
+            }
+            .addOnFailureListener { exception ->
+                Log.e("FirestoreError", "Gagal mengambil menu Main Course", exception)
+            }
+    }
+
+    private fun navigateToCategoryFragment(category: String) {
+        val categoryFragment = Category()
+        val bundle = Bundle().apply {
+            putString("CATEGORY_NAME", category)
+        }
+        categoryFragment.arguments = bundle
+
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, categoryFragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    private fun navigateToDetail(menuData: MenuData) {
+        val detailFragment = Detail()
+        val bundle = Bundle().apply {
+            putString("title", menuData.title)
+            putString("author", menuData.author)
+            putString("imageFood", menuData.imageFood)
+            putStringArrayList("ingredients", ArrayList(menuData.ingredients ?: emptyList()))
+        }
+        detailFragment.arguments = bundle
+
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, detailFragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
