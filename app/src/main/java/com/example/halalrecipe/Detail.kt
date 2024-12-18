@@ -15,8 +15,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.material.imageview.ShapeableImageView
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -32,12 +30,6 @@ class Detail : Fragment() {
     private lateinit var ratingBar: RatingBar
     private lateinit var comment: EditText
     private lateinit var postButton: Button
-
-    private lateinit var nameText: TextView
-    private lateinit var profileImage: ShapeableImageView
-
-    private var name: String? = null
-    private var profileUrl: String? = null
 
 
 
@@ -78,16 +70,9 @@ class Detail : Fragment() {
         comment = view.findViewById(R.id.comment)
         postButton = view.findViewById(R.id.postButton)
 
-        // Inisialisasi nameText dan profileImage
-        nameText = view.findViewById(R.id.name)
-        profileImage = view.findViewById(R.id.profile)
-
 
         // Fetch data review dari Firestore
         fetchData()
-
-        // Ambil data pengguna untuk nama dan foto profil
-        fetchUserData()
 
         val imageFoodView = view.findViewById<ImageView>(R.id.imageFood)
         Glide.with(this).load(imageFood).into(imageFoodView)
@@ -112,6 +97,7 @@ class Detail : Fragment() {
             navigateToDetail(menuData)
         }
 
+
         return view
     }
 
@@ -123,8 +109,6 @@ class Detail : Fragment() {
         val rating = ratingBar.rating
         val desc = comment.text.toString().trim()
 
-        val name = name
-        val profile = profileUrl
 
         // Mendapatkan tanggal lokal saat ini
         val dateLokal = LocalDate.now()
@@ -143,9 +127,8 @@ class Detail : Fragment() {
         val review = hashMapOf(
             "rating" to rating,
             "desc" to desc,
-            "date" to dateFormatted, // Pastikan tipe data String
-            "name" to name,
-            "profile" to profile
+            "date" to dateFormatted // Pastikan tipe data String
+
         )
 
         // Kirim data ke Firestore
@@ -201,40 +184,6 @@ class Detail : Fragment() {
             .replace(R.id.fragment_container, reviewsFragment)
             .addToBackStack(null)
             .commit()
-    }
-
-    private fun fetchUserData() {
-        val db = FirebaseFirestore.getInstance()
-        val userId = FirebaseAuth.getInstance().currentUser?.uid  // Ambil ID user yang sedang login
-
-        if (userId != null) {
-            db.collection("account").document(userId)
-                .get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-                        name = document.getString("name")
-                        profileUrl = document.getString("profile")
-
-                        // Update nama pengguna
-                        nameText.text = name ?: "User"  // Set default text if name is null
-
-                        // Cek apakah field "profile" berisi URL langsung
-                        if (profileUrl.isNullOrEmpty()) {
-                            profileImage.setImageResource(R.drawable.pfp)  // Set default image if no profile URL
-                        } else {
-                            // Jika URL langsung ke gambar, load menggunakan Glide
-                            Glide.with(requireContext())
-                                .load(profileUrl)
-                                .placeholder(R.drawable.pfp)  // Placeholder selama gambar dimuat
-                                .error(R.drawable.pfp)  // Gambar default jika terjadi error
-                                .into(profileImage)
-                        }
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    Log.e("FirestoreError", "Error getting user data", exception)
-                }
-        }
     }
 
 }
