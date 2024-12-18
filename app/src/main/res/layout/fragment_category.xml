@@ -68,7 +68,7 @@
                 android:hint="Search your recipes"
                 android:paddingStart="8dp"
                 android:iconifiedByDefault="false"
-                android:queryHint="Search your recipes" />
+                android:queryHint="Search your recipes " />
         </LinearLayout>
 
         <HorizontalScrollView
