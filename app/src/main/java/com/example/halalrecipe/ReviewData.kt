@@ -1,7 +1,5 @@
 package com.example.halalrecipe
 
-import org.w3c.dom.Comment
-
 data class ReviewData(
     val id: String? = null,
     val name: String? = null,
