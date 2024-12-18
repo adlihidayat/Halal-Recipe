@@ -56,21 +56,15 @@
                 android:orientation="horizontal"
                 android:padding="8dp">
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="39dp"
-                    android:src="@drawable/ic_search"
-                    app:tint="#B0B0B0" />
-
-                <EditText
+                <SearchView
                     android:layout_width="0dp"
                     android:layout_height="39dp"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:hint="Search your recipes"
                     android:paddingStart="8dp"
-                    android:textColor="#000000"
-                    android:textColorHint="#B0B0B0" />
+                    android:iconifiedByDefault="false"
+                    android:queryHint="Search your recipes"/>
             </LinearLayout>
 
             <HorizontalScrollView
