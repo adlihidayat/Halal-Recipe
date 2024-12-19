@@ -41,4 +41,9 @@
     <string name="default_web_client_id">1030337410197-1qc3sihsou75vr1de9oh6iale1f99tac.apps.googleusercontent.com</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="cat_image">Error Cat Image</string>
+    <string name="retry">Retry</string>
+
 </resources>

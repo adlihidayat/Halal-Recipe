@@ -1,6 +1,7 @@
 package com.example.halalrecipe.activity
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.widget.CheckBox
 import android.widget.Toast
@@ -18,6 +19,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.android.gms.common.api.ApiException
 import android.util.Log
+import android.widget.ImageView
+import androidx.appcompat.app.AlertDialog
+import com.android.volley.toolbox.ImageRequest
+import com.android.volley.toolbox.Volley
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.OAuthProvider
@@ -221,21 +227,60 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Login successful, proceed to next screen
+                    // Login successful
                     val user = auth.currentUser
                     Toast.makeText(this, "Welcome ${user?.email}", Toast.LENGTH_SHORT).show()
 
-                    // Navigate to RegisterActivity or home screen
+                    // Navigate to MainActivity
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
-                    // Login failed
+                    // Login failed, fetch a cat image
                     val exception = task.exception
                     Log.e("LoginActivity", "Login failed", exception)
-                    Toast.makeText(this, "Authentication failed: ${exception?.localizedMessage}", Toast.LENGTH_SHORT).show()
+                    val errorCode = "400" // Default to 400 if no specific error
+                    showCatPopup(errorCode)
                 }
             }
     }
+
+    private fun showCatPopup(errorCode: String) {
+        val url = "https://http.cat/$errorCode" // Generate the http.cat URL based on error code
+        val builder = AlertDialog.Builder(this)
+        val dialogView = layoutInflater.inflate(R.layout.dialog_cat_image, null) // Custom layout for the popup
+        builder.setView(dialogView)
+        val alertDialog = builder.create()
+
+        val imageView = dialogView.findViewById<ImageView>(R.id.catImageView)
+        val retryButton = dialogView.findViewById<Button>(R.id.retryButton)
+
+        // Load the image with Volley and Glide
+        val requestQueue = Volley.newRequestQueue(this)
+        val imageRequest = ImageRequest(
+            url,
+            { response ->
+                // Set the image in the ImageView
+                Glide.with(this).load(response).into(imageView)
+            },
+            0,
+            0,
+            ImageView.ScaleType.CENTER_CROP,
+            Bitmap.Config.RGB_565,
+            { error ->
+                Log.e("LoginActivity", "Failed to load cat image", error)
+                Toast.makeText(this, "Could not load cat image", Toast.LENGTH_SHORT).show()
+            }
+        )
+        requestQueue.add(imageRequest)
+
+        // Set up the retry button
+        retryButton.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+        alertDialog.show()
+    }
+
 
 }
