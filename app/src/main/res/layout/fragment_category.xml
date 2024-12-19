@@ -61,14 +61,14 @@
             android:padding="8dp">
 
             <SearchView
+                android:id="@+id/searchView"
                 android:layout_width="0dp"
                 android:layout_height="39dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:hint="Search your recipes"
-                android:paddingStart="8dp"
                 android:iconifiedByDefault="false"
-                android:queryHint="Search your recipes " />
+                android:queryHint="Search your recipes" />
         </LinearLayout>
 
         <HorizontalScrollView

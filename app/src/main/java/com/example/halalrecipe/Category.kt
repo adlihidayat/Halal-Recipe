@@ -12,12 +12,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.FirebaseFirestore
+import android.widget.SearchView // Tambahkan impor ini jika belum ada
 
 class Category : Fragment() {
 
     private lateinit var categoryTitle: TextView
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: MenuAdapter
+    private lateinit var searchView: SearchView // Deklarasi SearchView
 
     private var categoryName: String? = null
     private var categoryId: String? = null
@@ -31,6 +33,7 @@ class Category : Fragment() {
         // Inisialisasi View
         categoryTitle = view.findViewById(R.id.categorytitle)
         recyclerView = view.findViewById(R.id.viewmenu)
+        searchView = view.findViewById(R.id.searchView) // Inisialisasi SearchView
 
         // Ambil data kategori dari Bundle
         arguments?.let {
@@ -46,6 +49,9 @@ class Category : Fragment() {
         // Load data sesuai kategori dari Firestore
         loadData(categoryId)
 
+        // Setup SearchView
+        setupSearchView()
+
         // Setup Back Button
         val backButton = view.findViewById<ImageView>(R.id.backButton)
         backButton.setOnClickListener {
@@ -53,25 +59,7 @@ class Category : Fragment() {
             parentFragmentManager.popBackStack()
         }
 
-        // Setup klik untuk navigasi ke kategori
-        view.findViewById<View>(R.id.appetizer).setOnClickListener {
-            navigateToCategoryFragment("Appetizer")
-        }
-
-        view.findViewById<View>(R.id.beverages).setOnClickListener {
-            navigateToCategoryFragment("Beverages")
-        }
-
-        view.findViewById<View>(R.id.dessert).setOnClickListener {
-            navigateToCategoryFragment("Dessert")
-        }
-
-        view.findViewById<View>(R.id.mainCourse).setOnClickListener {
-            navigateToCategoryFragment("Main Course")
-        }
-
         return view
-
     }
 
     private fun setupRecyclerView() {
@@ -86,6 +74,21 @@ class Category : Fragment() {
         }, useBiggerLayout = true) // Gunakan layout yang lebih besar (viewholder_menubigger)
 
         recyclerView.adapter = adapter
+    }
+
+    private fun setupSearchView() {
+        // Tambahkan listener untuk SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true // Tidak memerlukan aksi saat submit
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Filter data berdasarkan query
+                adapter.filterData(newText.orEmpty())
+                return true
+            }
+        })
     }
 
     private fun loadData(categoryId: String?) {
@@ -115,18 +118,4 @@ class Category : Fragment() {
             .addToBackStack(null)
             .commit()
     }
-
-    private fun navigateToCategoryFragment(category: String) {
-        val categoryFragment = Category()
-        val bundle = Bundle().apply {
-            putString("CATEGORY_NAME", category)
-        }
-        categoryFragment.arguments = bundle
-
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, categoryFragment)
-            .addToBackStack(null)
-            .commit()
-    }
-
 }

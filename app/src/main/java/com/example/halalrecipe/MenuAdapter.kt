@@ -15,13 +15,21 @@ class MenuAdapter(
     private val useBiggerLayout: Boolean = false // Default value to false
 ) : RecyclerView.Adapter<MenuAdapter.MyViewHolder>() {
 
-    private val menuList = mutableListOf<MenuData>() // List to store Firestore data
+    private val originalList = mutableListOf<MenuData>() // Original list to store Firestore data
+    private val filteredList = mutableListOf<MenuData>() // Filtered list for SearchView
 
     // Function to update data
-    fun updateData(newMenuList: List<MenuData>) {
-        menuList.clear()
-        menuList.addAll(newMenuList)
+    private fun updateFilteredList(newList: List<MenuData>) {
+        filteredList.clear()
+        filteredList.addAll(newList)
         notifyDataSetChanged()
+    }
+
+    // Function to update data from Firestore
+    fun updateData(newMenuList: List<MenuData>) {
+        originalList.clear()
+        originalList.addAll(newMenuList)
+        updateFilteredList(originalList)
     }
 
     // ViewHolder
@@ -55,6 +63,18 @@ class MenuAdapter(
             }
     }
 
+    // Function to filter data based on query
+    fun filterData(query: String) {
+        val filtered = if (query.isEmpty()) {
+            originalList
+        } else {
+            originalList.filter {
+                it.title?.contains(query, ignoreCase = true) ?: false
+            }
+        }
+        updateFilteredList(filtered)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         // Choose layout based on useBiggerLayout flag
         val layoutRes = if (useBiggerLayout) {
@@ -68,7 +88,7 @@ class MenuAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem = menuList[position]
+        val currentItem = filteredList[position]
 
         holder.title.text = currentItem.title ?: "Untitled"
         holder.author.text = currentItem.author ?: "Unknown Author"
@@ -93,6 +113,6 @@ class MenuAdapter(
     }
 
     override fun getItemCount(): Int {
-        return menuList.size
+        return filteredList.size
     }
 }
