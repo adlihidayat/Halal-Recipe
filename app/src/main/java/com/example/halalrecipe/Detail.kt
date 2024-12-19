@@ -57,10 +57,6 @@ class Detail : Fragment() {
         val imageFood = arguments?.getString("imageFood")
         val ingredients = arguments?.getStringArrayList("ingredients")
         val tutorial = arguments?.getStringArrayList("tutorial")
-        val bookmarkButton = view.findViewById<ImageView>(R.id.bookmarkButton)
-        bookmarkButton.setOnClickListener {
-            saveToBookmark(foodId, title, author, imageFood, ingredients, tutorial)
-        }
 
 
         // Siapkan data untuk dikirim
@@ -231,38 +227,83 @@ class Detail : Fragment() {
         }
     }
 
-    private fun saveToBookmark(
-        foodId: String,
-        title: String?,
-        author: String?,
-        imageFood: String?,
-        ingredients: ArrayList<String>?,
-        tutorial: ArrayList<String>?
-    ) {
+    private fun saveToBookmark(foodId: String) {
         val db = FirebaseFirestore.getInstance()
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: "" // Ambil UID pengguna yang sedang login
 
-        val bookmarkData = hashMapOf(
-            "foodId" to foodId,
-            "title" to title,
-            "author" to author,
-            "imageFood" to imageFood,
-            "ingredients" to ingredients,
-            "tutorial" to tutorial
-        )
+        // Ambil data resep lengkap berdasarkan foodId
+        db.collection("foods")
+            .document(foodId)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    // Ambil data dari dokumen asli
+                    val title = document.getString("title")
+                    val author = document.getString("author")
+                    val imageFood = document.getString("imageFood")
+                    val ingredients = document.get("ingredients") as? ArrayList<String>
+                    val tutorial = document.get("tutorial") as? ArrayList<String>
+
+                    // Siapkan data untuk disimpan ke bookmark
+                    val bookmarkData = hashMapOf(
+                        "foodId" to foodId,
+                        "title" to title,
+                        "author" to author,
+                        "imageFood" to imageFood,
+                        "ingredients" to ingredients,
+                        "tutorial" to tutorial
+                    )
+
+                    // Simpan data ke koleksi bookmarkedRecipes
+                    db.collection("users")
+                        .document(userId)
+                        .collection("bookmarkedRecipes")
+                        .document(foodId)
+                        .set(bookmarkData)
+                        .addOnSuccessListener {
+                            Toast.makeText(requireContext(), "Resep berhasil disimpan ke bookmark!", Toast.LENGTH_SHORT).show()
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(requireContext(), "Gagal menyimpan resep: ${e.message}", Toast.LENGTH_SHORT).show()
+                        }
+                } else {
+                    Toast.makeText(requireContext(), "Resep tidak ditemukan!", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(requireContext(), "Gagal mengambil data resep: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+
+    private fun checkBookmarkStatus(foodId: String) {
+        val db = FirebaseFirestore.getInstance()
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: ""
 
         db.collection("users")
             .document(userId)
             .collection("bookmarkedRecipes")
             .document(foodId)
-            .set(bookmarkData)
-            .addOnSuccessListener {
-                Toast.makeText(requireContext(), "Resep berhasil disimpan ke bookmark!", Toast.LENGTH_SHORT).show()
+            .get()
+            .addOnSuccessListener { document ->
+                val bookmarkButton = requireView().findViewById<ImageView>(R.id.bookmarkButton)
+                if (document.exists()) {
+                    bookmarkButton.setImageResource(R.drawable.baseline_bookmark_24) // Bookmark aktif
+                    bookmarkButton.setOnClickListener {
+                        removeFromBookmark(foodId) // Hapus bookmark jika sudah ada
+                    }
+                } else {
+                    bookmarkButton.setImageResource(R.drawable.baseline_bookmark_border_24) // Bookmark tidak aktif
+                    bookmarkButton.setOnClickListener {
+                        saveToBookmark(foodId) // Tambah bookmark jika belum ada
+                    }
+                }
             }
-            .addOnFailureListener { e ->
-                Toast.makeText(requireContext(), "Gagal menyimpan resep: ${e.message}", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener {
+                Log.e("BookmarkStatus", "Gagal mengecek status bookmark")
             }
     }
+
 
     private fun removeFromBookmark(foodId: String) {
         val db = FirebaseFirestore.getInstance()
@@ -280,35 +321,6 @@ class Detail : Fragment() {
             }
             .addOnFailureListener { e ->
                 Toast.makeText(requireContext(), "Gagal menghapus bookmark: ${e.message}", Toast.LENGTH_SHORT).show()
-            }
-    }
-
-
-    private fun checkBookmarkStatus(foodId: String) {
-        val db = FirebaseFirestore.getInstance()
-        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: "" // Ambil UID pengguna yang sedang login
-
-        db.collection("users")
-            .document(userId)
-            .collection("bookmarkedRecipes")
-            .document(foodId)
-            .get()
-            .addOnSuccessListener { document ->
-                val bookmarkButton = requireView().findViewById<ImageView>(R.id.bookmarkButton)
-                if (document.exists()) {
-                    bookmarkButton.setImageResource(R.drawable.baseline_bookmark_24) // Bookmark aktif
-                    bookmarkButton.setOnClickListener {
-                        removeFromBookmark(foodId) // Hapus bookmark jika sudah ada
-                    }
-                } else {
-                    bookmarkButton.setImageResource(R.drawable.baseline_bookmark_border_24) // Bookmark tidak aktif
-                    bookmarkButton.setOnClickListener {
-                        saveToBookmark(foodId, title, author, imageFood, ingredients, tutorial) // Tambah bookmark jika belum ada
-                    }
-                }
-            }
-            .addOnFailureListener {
-                Log.e("BookmarkStatus", "Gagal mengecek status bookmark")
             }
     }
 
@@ -349,4 +361,3 @@ class Detail : Fragment() {
     }
 
 }
-
