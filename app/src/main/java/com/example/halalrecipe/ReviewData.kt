@@ -6,5 +6,5 @@ data class ReviewData(
     val profile: String? = null,
     val rating: Float = 0.0f,
     val date: String? = null,
-    val desc: String? = null
+    val desc: String? = ""
 )

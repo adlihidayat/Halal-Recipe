@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -58,6 +59,26 @@ class Search : Fragment() {
 
         view.findViewById<View>(R.id.mainCourse).setOnClickListener {
             navigateToCategoryFragment("Main Course")
+        }
+
+        // Di dalam onCreateView, setelah inisialisasi view
+        val seeAllApp = view.findViewById<TextView>(R.id.seeallapp)
+        val seeAllDes = view.findViewById<TextView>(R.id.seealldes)
+        val seeAllMain = view.findViewById<TextView>(R.id.seeallmain)
+        val seeAllBev = view.findViewById<TextView>(R.id.seeallbev)
+
+// Listener untuk tombol "See all" di appetizer
+        seeAllApp.setOnClickListener {
+            navigateToCategoryFragment("Appetizer")  // Filter kategori "Appetizer"
+        }
+        seeAllDes.setOnClickListener {
+            navigateToCategoryFragment("Dessert")  // Filter kategori "Appetizer"
+        }
+        seeAllMain.setOnClickListener {
+            navigateToCategoryFragment("Main Course")  // Filter kategori "Appetizer"
+        }
+        seeAllBev.setOnClickListener {
+            navigateToCategoryFragment("Beverages")  // Filter kategori "Appetizer"
         }
 
         return view

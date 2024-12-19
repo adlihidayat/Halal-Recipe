@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:descendantFocusability="blocksDescendants">
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/imageFood"
@@ -56,7 +55,7 @@
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="75dp"
         android:layout_marginBottom="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +71,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="350dp"
+                android:layout_marginTop="270dp"
                 android:background="@drawable/rounded_background"
                 android:orientation="horizontal"
                 android:paddingHorizontal="16dp"
@@ -197,7 +196,7 @@
                     android:paddingVertical="10dp">
 
                     <TextView
-                        android:id="@+id/textView17"
+                        android:id="@+id/caramasak"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Cara masak"
@@ -210,7 +209,6 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black" />
                 </LinearLayout>
-
             </LinearLayout>
 
             <LinearLayout
@@ -255,17 +253,18 @@
                             android:textColor="@color/gray" />
                     </LinearLayout>
 
+
                     <Button
-                        android:id="@+id/button"
+                        android:id="@+id/postButton"
                         android:layout_width="210dp"
                         android:layout_height="50dp"
                         android:layout_weight="1"
                         android:background="@null"
                         android:text="Post"
-                        android:textColor="@color/green" />
-
-
+                        android:textColor="@color/green"
+                        app:layout_constraintTop_toBottomOf="@id/comment"/>
                 </LinearLayout>
+
 
                 <RatingBar
                     android:id="@+id/ratingBar"
@@ -273,7 +272,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:paddingVertical="5dp"
-                    android:stepSize="1" />
+                    android:stepSize="1"
+                    android:numStars="5"
+                    android:rating="0"
+                    android:layout_marginTop="16dp"/>
 
                 <EditText
                     android:id="@+id/comment"
@@ -281,12 +283,14 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_background"
                     android:ems="10"
-                    android:inputType="text"
                     android:padding="20dp"
-                    android:text="Describe Your Experience (optional)"
-                    android:textColor="@color/gray" />
-
-
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:hint="Masukkan komentar Anda"
+                    android:textColorHint="@color/gray"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:enabled="true"/>
             </LinearLayout>
 
             <LinearLayout
@@ -312,10 +316,7 @@
                     android:paddingHorizontal="10dp"
                     android:text="See all reviews"
                     android:textColor="@color/green" />
-
             </LinearLayout>
-
         </LinearLayout>
-
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

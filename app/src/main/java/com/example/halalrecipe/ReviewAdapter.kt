@@ -54,7 +54,7 @@ class ReviewAdapter(private val context: Context, private val reviewDataList: Li
             .get()
             .addOnSuccessListener { result ->
                 val newReviewList = result.map { document ->
-                    document.toObject(ReviewData::class.java)
+                    document.toObject(ReviewData::class.java).copy(id = document.id)
                 }
                 updateData(newReviewList) // Fungsi untuk memperbarui data RecyclerView
             }
@@ -62,6 +62,7 @@ class ReviewAdapter(private val context: Context, private val reviewDataList: Li
                 Log.e("Firestore", "Error fetching reviews: ", exception)
             }
     }
+
 
     private fun updateData(newList: List<ReviewData>) {
         (reviewDataList as MutableList).clear()
