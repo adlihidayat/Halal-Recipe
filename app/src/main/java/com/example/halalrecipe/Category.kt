@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -45,6 +46,9 @@ class Category : Fragment() {
 
         // Setup RecyclerView
         setupRecyclerView()
+
+        setupCategoryListeners(view)
+
 
         // Load data sesuai kategori dari Firestore
         loadData(categoryId)
@@ -89,6 +93,34 @@ class Category : Fragment() {
                 return true
             }
         })
+    }
+
+    private fun setupCategoryListeners(view: View) {
+        val appetizer = view.findViewById<FrameLayout>(R.id.appetizer)
+        val mainCourse = view.findViewById<FrameLayout>(R.id.mainCourse)
+        val dessert = view.findViewById<FrameLayout>(R.id.dessert)
+        val beverages = view.findViewById<FrameLayout>(R.id.beverages)
+
+        appetizer.setOnClickListener { navigateToCategoryFragment("Appetizer") }
+        mainCourse.setOnClickListener { navigateToCategoryFragment("Main Course") }
+        dessert.setOnClickListener { navigateToCategoryFragment("Dessert") }
+        beverages.setOnClickListener { navigateToCategoryFragment("Beverages") }
+    }
+
+    private fun navigateToCategoryFragment(category: String) {
+        val categoryFragment = Category()
+
+        // Kirim data kategori ke fragment Category melalui arguments
+        val bundle = Bundle().apply {
+            putString("CATEGORY_NAME", category)
+        }
+        categoryFragment.arguments = bundle
+
+        // Ganti fragment
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, categoryFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun loadData(categoryId: String?) {

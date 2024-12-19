@@ -94,7 +94,7 @@
                     android:layout_height="match_parent">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/appetizerimage"
+                        android:id="@+id/seeallapp"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:scaleType="centerCrop"
@@ -124,7 +124,7 @@
                     android:paddingHorizontal="10dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/mainCourseimage"
+                        android:id="@+id/seeallmain"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:scaleType="centerCrop"
@@ -155,7 +155,7 @@
                     android:paddingHorizontal="10dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/imageview16"
+                        android:id="@+id/seealldes"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:scaleType="centerCrop"
@@ -185,7 +185,7 @@
                     android:paddingHorizontal="10dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/imageView8"
+                        android:id="@+id/seeallbev"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:scaleType="centerCrop"
