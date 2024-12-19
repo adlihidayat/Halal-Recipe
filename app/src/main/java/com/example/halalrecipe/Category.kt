@@ -49,7 +49,6 @@ class Category : Fragment() {
 
         setupCategoryListeners(view)
 
-
         // Load data sesuai kategori dari Firestore
         loadData(categoryId)
 
