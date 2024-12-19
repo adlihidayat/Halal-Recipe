@@ -96,18 +96,23 @@ class Saved : Fragment() {
     }
 
     private fun navigateToDetail(recipe: SavedRecipe) {
-        if (recipe.title.isNotEmpty() && recipe.ingredients.isNotEmpty() && recipe.tutorial.isNotEmpty()) {
-            val intent = Intent(requireContext(), Detail::class.java).apply {
-                putExtra("title", recipe.title)
-                putExtra("author", recipe.author)
-                putExtra("imageFood", recipe.imageFood)
-                putStringArrayListExtra("ingredients", ArrayList(recipe.ingredients))
-                putStringArrayListExtra("tutorial", ArrayList(recipe.tutorial))
-            }
-            startActivity(intent)
-        } else {
-            Toast.makeText(requireContext(), "Incomplete recipe data", Toast.LENGTH_SHORT).show()
-        }
+        val detailFragment = Detail()
+
+        // Kirim data melalui arguments
+        val bundle = Bundle()
+        bundle.putString("id", recipe.title) // Assuming the title is used as an ID
+        bundle.putString("title", recipe.title)
+        bundle.putString("author", recipe.author)
+        bundle.putString("imageFood", recipe.imageFood)
+        bundle.putStringArrayList("ingredients", ArrayList(recipe.ingredients))
+        bundle.putStringArrayList("tutorial", ArrayList(recipe.tutorial))
+        detailFragment.arguments = bundle
+
+        // Ganti fragment
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, detailFragment) // Replace with the container holding the fragment
+            .addToBackStack(null) // Add the transaction to the back stack for back navigation
+            .commit()
     }
 
 
