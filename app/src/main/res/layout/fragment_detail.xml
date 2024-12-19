@@ -227,6 +227,7 @@
                         android:id="@+id/profile"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
+                        android:scaleType="centerCrop"
                         android:src="@drawable/pfp"
                         app:shapeAppearanceOverlay="@style/lingkaran" />
 
