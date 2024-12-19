@@ -75,7 +75,7 @@ class Saved : Fragment() {
 
                 for (document in documents) {
                     try {
-                        val recipe = document.toObject(SavedRecipe::class.java)
+                        val recipe = document.toObject(SavedRecipe::class.java).copy(id = document.id)
                         if (recipe.title.isNotEmpty()) { // Validasi minimum
                             savedRecipesList.add(recipe)
                         }
@@ -100,7 +100,7 @@ class Saved : Fragment() {
 
         // Kirim data melalui arguments
         val bundle = Bundle()
-        bundle.putString("id", recipe.title) // Assuming the title is used as an ID
+        bundle.putString("id", recipe.id) // Assuming the title is used as an ID
         bundle.putString("title", recipe.title)
         bundle.putString("author", recipe.author)
         bundle.putString("imageFood", recipe.imageFood)
@@ -134,6 +134,7 @@ class Saved : Fragment() {
 
 // Data model for saved recipes
 data class SavedRecipe(
+    val id: String = "",
     val title: String = "",
     val author: String = "",
     val imageFood: String = "",
