@@ -25,8 +25,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="32dp">
+            android:paddingBottom="16dp"
+            >
 
             <ImageView
                 android:id="@+id/backButton"
@@ -94,7 +94,7 @@
                     android:layout_height="match_parent">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/seeallapp"
+                        android:id="@+id/appetizerimage"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:scaleType="centerCrop"
@@ -124,7 +124,7 @@
                     android:paddingHorizontal="10dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/seeallmain"
+                        android:id="@+id/mainCourseimage"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:scaleType="centerCrop"
@@ -155,7 +155,7 @@
                     android:paddingHorizontal="10dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/seealldes"
+                        android:id="@+id/imageview16"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:scaleType="centerCrop"
@@ -185,7 +185,7 @@
                     android:paddingHorizontal="10dp">
 
                     <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/seeallbev"
+                        android:id="@+id/imageView8"
                         android:layout_width="75dp"
                         android:layout_height="75dp"
                         android:scaleType="centerCrop"

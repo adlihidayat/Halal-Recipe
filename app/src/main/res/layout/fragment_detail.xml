@@ -227,7 +227,6 @@
                         android:id="@+id/profile"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:scaleType="centerCrop"
                         android:src="@drawable/pfp"
                         app:shapeAppearanceOverlay="@style/lingkaran" />
 
@@ -313,7 +312,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="10dp"
                     android:layout_marginBottom="40dp"
-                    android:background="@color/white"
+                    android:background="@null"
                     android:paddingHorizontal="10dp"
                     android:text="See all reviews"
                     android:textColor="@color/green" />
